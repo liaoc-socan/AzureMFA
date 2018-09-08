@@ -1,0 +1,71 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "markdownMFAContent": {
+            "type": "string"
+        },
+        "dashboardName": {
+            "type": "string"
+        },
+        "dashboardTitle": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+{
+    "properties": {
+        "lenses": {
+            "0": {
+                "order": 0,
+                "parts": {
+                    "0": {
+                        "position": {
+                            "x": 0,
+                            "y": 0,
+                            "rowSpan": 8,
+                            "colSpan": 4
+                        },
+                        "metadata": {
+                            "inputs": [],
+                            "type": "Extension/HubsExtension/PartType/MarkdownPart",
+                            "settings": {
+                                "content": {
+                                    "settings": {
+                                        "content": "[parameters('markdownMFAContent')]",
+                                        "title": "Azure MFA Registration",
+                                        "subtitle": "Current Status for User MFA Registrations"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "metadata": {
+            "model": {
+                "timeRange": {
+                    "value": {
+                        "relative": {
+                            "duration": 24,
+                            "timeUnit": 1
+                        }
+                    },
+                    "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+                }
+            }
+        }
+    },
+    "metadata": { },
+    "apiVersion": "2015-08-01-preview",
+    "name": "[parameters('dashboardName')]",
+    "type": "Microsoft.Portal/dashboards",
+    "location": "[resourceGroup().location]",
+    "tags": {
+        "hidden-title": "[parameters('dashboardTitle')]"
+            }
+        }
+    ]
+}
